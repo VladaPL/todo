@@ -1,0 +1,10 @@
+.button-add-item {
+  margin-top: 30px;
+  width: 100%;
+  border-radius: 10px;
+  transition: 1s;
+}
+
+.button-add-item:hover {
+  background-color: #aeb6a0;
+}
