@@ -56,6 +56,10 @@ export default class App extends Component {
     });
   };
 
+  searchItem = (text) => {
+    console.log(`I find ${text}`);
+  };
+
   toggleProperty(arr, id, propName) {
     const index = arr.findIndex((el) => el.id === id);
     // 1. update object
@@ -100,6 +104,7 @@ export default class App extends Component {
           onDeleted={this.deleteItem}
           onToggleImportant={this.onToggleImportant}
           onToggleDone={this.onToggleDone}
+          onSearchItem={this.searchItem}
         />
         <ItemAddForm onItemAdded={this.addItem} />
       </div>
