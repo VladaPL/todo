@@ -18,6 +18,7 @@ export default class App extends Component {
       this.createTodoItem("Адабстар задачи от 13.05"),
       this.createTodoItem("Бег каждый день"),
     ],
+    textOfSearch: ''
   };
 
   createTodoItem(label) {
@@ -56,10 +57,6 @@ export default class App extends Component {
     });
   };
 
-  searchItem = (text) => {
-    console.log(`I find ${text}`);
-  };
-
   toggleProperty(arr, id, propName) {
     const index = arr.findIndex((el) => el.id === id);
     // 1. update object
@@ -86,8 +83,24 @@ export default class App extends Component {
     });
   };
 
+  onSearchChange = (textOfSearch) => {
+    this.setState({ textOfSearch });
+  };
+
+  search(items, textOfSearch) {
+    if(textOfSearch.length === 0) {
+      return items;
+    }
+
+    return items.filter((item) => {
+      return item.label.toLowerCase().indexOf(textOfSearch.toLowerCase()) > -1;
+    });
+  };
+
   render() {
-    const { todoData } = this.state;
+    const { todoData, textOfSearch } = this.state;
+
+    const visibleItems = this.search(todoData, textOfSearch);
     const doneCount = todoData.filter((el) => el.done).length;
     const todoCount = todoData.length - doneCount;
 
@@ -95,16 +108,15 @@ export default class App extends Component {
       <div className="todo-app">
         <AppHeader toDo={todoCount} done={doneCount} />
         <div className="top-panel d-flex">
-          <SearchPanel />
+          <SearchPanel onSearchChange={this.onSearchChange}/>
           <ItemStatusFilter />
         </div>
 
         <TodoList
-          todos={todoData}
+          todos={visibleItems}
           onDeleted={this.deleteItem}
           onToggleImportant={this.onToggleImportant}
           onToggleDone={this.onToggleDone}
-          onSearchItem={this.searchItem}
         />
         <ItemAddForm onItemAdded={this.addItem} />
       </div>
