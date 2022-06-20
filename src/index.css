@@ -1,5 +1,9 @@
 body {
-  background-image: url('./images/1.jpg');
-  background-repeat: no-repeat;
-  background-color: #eaeaea;
+    position: fixed;
+    width: 100%;
+    background-image: url('./images/6.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    z-index: 1;
+    background-color: #eaeaea;
 }

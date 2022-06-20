@@ -7,16 +7,15 @@ import ItemStatusFilter from "../item-status-filter";
 import ItemAddForm from "../item-add-form";
 
 import "./app.css";
-import { render } from "@testing-library/react";
 
 export default class App extends Component {
   maxId = 100;
 
   state = {
     todoData: [
-      this.createTodoItem("Сделай приложение"),
-      this.createTodoItem("Адабстар задачи от 13.05"),
-      this.createTodoItem("Бег каждый день"),
+      this.createTodoItem("Сделать деплой ToDo"),
+      this.createTodoItem("Повторить SOLID"),
+      this.createTodoItem("Настроить UploadImage"),
     ],
     textOfSearch: '',
     filter: 'all' // active, done, all
